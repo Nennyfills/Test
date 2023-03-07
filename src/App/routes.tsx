@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { BuyFlow } from 'Pages'
+import { BuyFlow, DesignerInsurance, Home } from 'Pages'
+import { Navigate } from 'react-router-dom'
 
 type route = {
   path: string
@@ -13,13 +14,25 @@ const routes: route[] = [
   {
     path: '/',
     exact: true,
-    element: <div />,
+    element: <Home />,
     loader: <div>loading...</div>,
   },
   {
     path: '/buy/insurance_dev',
     exact: true,
     element: <BuyFlow />,
+    loader: <div>loading...</div>,
+  },
+  {
+    path: '/buy/insurance_designer',
+    exact: true,
+    element: <DesignerInsurance />,
+    loader: <div>loading...</div>,
+  },
+  {
+    path: '*',
+    exact: true,
+    element: <Navigate to="/" />,
     loader: <div>loading...</div>,
   },
 ]

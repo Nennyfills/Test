@@ -13,6 +13,7 @@
       background-color: $lighter-gray;
       border: $lighter-gray solid 2px;
       color: $black;
+      cursor: no-drop;
     }
     &:disabled:hover {
       background-color: $light-gray;
