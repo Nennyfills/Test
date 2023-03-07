@@ -1,48 +1,38 @@
 import { render, screen } from '@testing-library/react'
+import Input from '..'
 
 import userEvent from '@testing-library/user-event'
-import Input, { InputProps } from '..'
+import { register } from 'Test/register'
 
-const setup = ({ label, error }: InputProps) => {
-  const utils = render(<Input label={label} error={error} />)
-  const input = screen.getByTestId('cost-input')
-  return {
-    input,
-    ...utils,
-  }
-}
-const inputDefaultProps = {
-  label: 'Name',
-  error: undefined,
-}
-
-const inputProps = {
-  label: 'Name',
-  error: 'name is required',
-}
-describe('when input is rendered', () => {
-  it('should check if input its showing default value', () => {
-    setup(inputDefaultProps)
-
+const value = { name: 'name' }
+describe('when rendered `onChange` is not press', () => {
+  it('should check if input has no value', () => {
+    render(
+      <Input
+        otherInputObject={register(value)}
+        error={'name is required'}
+        label="name"
+      />
+    )
     expect(screen.getByTestId('reuseable-input')).toBeInTheDocument()
-    expect(screen.getByTestId('label')).toBeInTheDocument()
-    expect(screen.getByTestId('error')).notToBeInTheDocument()
-  })
-
-  it('should check if input has no value when it has been typed on', () => {
-    const { input } = setup(inputDefaultProps)
-    userEvent.type(input, '')
-
-    expect(input).toBe('')
-    expect(screen.getByTestId('label')).toHaveTextContent('Name')
+    expect(screen.getByTestId('error')).toBeInTheDocument()
     expect(screen.getByTestId('error')).toHaveTextContent('name is required')
   })
+})
 
-  it('should check if input has value when it has been typed on', () => {
-    const { input } = setup(inputProps)
-    userEvent.type(input, 'Peter')
+describe('when rendered with `onChange` is pressed', () => {
+  it('should check if input has value', () => {
+    render(
+      <Input
+        otherInputObject={register(value)}
+        error={undefined}
+        label="name"
+      />
+    )
+    const input = screen.getByTestId('reuseable-input')
+    userEvent.type(input, 'Test,{enter}food!')
 
-    expect(input).toBe('Peter')
-    expect(screen.getByTestId('error')).notToBeInTheDocument()
+    expect(screen.getByTestId('reuseable-input')).toBeInTheDocument()
+    expect(screen.getByTestId('error')).toBeInTheDocument()
   })
 })
