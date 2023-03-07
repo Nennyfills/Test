@@ -7,12 +7,6 @@ export interface InputProps {
   error: string | undefined
   /** label string type syntax that takes label description */
   label: string
-  /** placeholder string type syntax that takes input placeholder */
-  placeholder: string
-  /** onChange event type syntax that handles input modification */
-  onChange?: React.EventHandler<any>
-  /** onBlur event type syntax that handles input modification */
-  onBlur?: React.EventHandler<any>
   /** otherInputObject input optional object type  */
   otherInputObject?: object
 }
@@ -21,18 +15,12 @@ export interface InputProps {
  * The Input component.
  * @Input reuseable input
  * @param {*} error - error will accept parameter as string | undefined
- * @param {*} placeholder - placeholder will accept parameter as string.
  * @param {*} label - label will accept parameter as string.
- * @param {*} onChange - onChange will accept parameter as event | any.
- * @param {*} onBlur - onBlur will accept parameter as object.
  * @param {*} otherInputObject - otherInputObject will accept parameter as object of any.
  * @returns JSX.Element
  */
 const Input: FC<InputProps> = ({
   error,
-  placeholder,
-  onChange,
-  onBlur,
   label,
   otherInputObject,
 }: InputProps) => {
@@ -49,9 +37,6 @@ const Input: FC<InputProps> = ({
         <input
           data-testid="reuseable-input"
           className="input-container__wrapper__input"
-          placeholder={placeholder}
-          onChange={onChange}
-          onBlur={onBlur}
           {...otherInputObject}
         />
         {error?.length ? (

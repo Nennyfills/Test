@@ -9,6 +9,14 @@
     padding: 8px 12px;
     font-size: 18px;
     font-weight: 600;
+    &:disabled {
+      background-color: $lighter-gray;
+      border: $lighter-gray solid 2px;
+      color: $black;
+    }
+    &:disabled:hover {
+      background-color: $light-gray;
+    }
     &:hover {
       background-color: $hover-primary;
     }

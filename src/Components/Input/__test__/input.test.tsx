@@ -3,10 +3,8 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Input, { InputProps } from '..'
 
-const setup = ({ label, error, placeholder }: InputProps) => {
-  const utils = render(
-    <Input label={label} error={error} placeholder={placeholder} />
-  )
+const setup = ({ label, error }: InputProps) => {
+  const utils = render(<Input label={label} error={error} />)
   const input = screen.getByTestId('cost-input')
   return {
     input,
@@ -16,13 +14,11 @@ const setup = ({ label, error, placeholder }: InputProps) => {
 const inputDefaultProps = {
   label: 'Name',
   error: undefined,
-  placeholder: 'Name',
 }
 
 const inputProps = {
   label: 'Name',
   error: 'name is required',
-  placeholder: 'Name',
 }
 describe('when input is rendered', () => {
   it('should check if input its showing default value', () => {

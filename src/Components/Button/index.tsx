@@ -11,6 +11,8 @@ interface ButtonProps {
   /** className type of string,
    * use this to pass in your custom styles to the button component */
   className?: string
+  /** disable type boolean, used to disable a button */
+  disabled?: boolean
 }
 
 /**
@@ -25,6 +27,7 @@ const Button: FC<ButtonProps> = ({
   children,
   className,
   onClick,
+  disabled,
 }: ButtonProps) => {
   return (
     <div className={`button-container ${className}`} data-testid="button">
@@ -32,6 +35,7 @@ const Button: FC<ButtonProps> = ({
         className="button-container__button"
         data-testid="reuseable-button"
         onClick={onClick}
+        disabled={disabled}
       >
         {children}
       </button>
