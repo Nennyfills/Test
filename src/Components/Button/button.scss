@@ -1,0 +1,25 @@
+.button-container {
+  margin: 0.6em 0;
+  &__button {
+    cursor: pointer;
+    border-radius: 4px;
+    border: $primary solid 2px;
+    color: $white;
+    background-color: $primary;
+    padding: 8px 12px;
+    font-size: 18px;
+    font-weight: 600;
+    &:disabled {
+      background-color: $lighter-gray;
+      border: $lighter-gray solid 2px;
+      color: $black;
+      cursor: no-drop;
+    }
+    &:disabled:hover {
+      background-color: $light-gray;
+    }
+    &:hover {
+      background-color: $hover-primary;
+    }
+  }
+}

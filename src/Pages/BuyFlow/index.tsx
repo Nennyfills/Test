@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { Summary } from 'Components'
 import AgeStep from './AgeStep'
 import EmailStep from './EmailStep'
-import SummaryStep from './SummaryStep'
+import { ProductIds } from 'Config/productIds'
 
-interface BuyflowProps {
-  productId: ProductIds
-}
-
-export enum ProductIds {
-  devIns = 'dev_ins',
-}
 
 const PRODUCT_IDS_TO_NAMES = {
   [ProductIds.devIns]: 'Developer Insurance',
 }
 
-const Buyflow: React.FC<BuyflowProps> = (props) => {
+const BuyFlow = () => {
   const [currentStep, setStep] = useState('email')
   const [collectedData, updateData] = useState({
     email: '',
@@ -27,16 +21,19 @@ const Buyflow: React.FC<BuyflowProps> = (props) => {
   }
   return (
     <>
-      <h4>Buying {PRODUCT_IDS_TO_NAMES[props.productId]}</h4>
+      <h4>Buying {PRODUCT_IDS_TO_NAMES[ProductIds.devIns]}</h4>
       {(currentStep === 'email' && <EmailStep cb={getStepCallback('age')} />) ||
         (currentStep === 'age' && (
           <AgeStep cb={getStepCallback('summary')} />
         )) ||
         (currentStep === 'summary' && (
-          <SummaryStep collectedData={collectedData} />
+          <Summary
+            collectedData={collectedData}
+            purchaseType={ProductIds.devIns}
+          />
         ))}
     </>
   )
 }
 
-export default Buyflow
+export default BuyFlow

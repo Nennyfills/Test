@@ -1,0 +1,11 @@
+.buy-flow {
+  margin: auto;
+  max-width: 35%;
+  &__btn {
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      margin-right: 0.6em;
+    }
+  }
+}
