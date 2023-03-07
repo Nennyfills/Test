@@ -1,0 +1,14 @@
+.buy-flow {
+  margin: auto;
+  width: 50%;
+  &__card {
+    height: 229px;
+  }
+  &__btn {
+    display: flex;
+    justify-content: space-between;
+    &__left {
+      margin-right: 0.6em;
+    }
+  }
+}
